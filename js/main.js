@@ -38,13 +38,23 @@ async function init() {
   updateClock();
   setupPWAInstall();
 
-  if ('serviceWorker' in navigator) {
+  const { protocol, hostname, href } = window.location;
+  const isSecureOrigin = protocol === 'https:';
+  const isLocalhost = ['localhost', '127.0.0.1', '[::1]'].includes(hostname);
+  const isFileProtocol = protocol === 'file:';
+  const canRegisterServiceWorker = 'serviceWorker' in navigator && (isSecureOrigin || isLocalhost);
+
+  if (canRegisterServiceWorker) {
     try {
-      const registration = await navigator.serviceWorker.register('/service-worker.js');
+      const serviceWorkerUrl = new URL('./service-worker.js', href);
+      const registration = await navigator.serviceWorker.register(serviceWorkerUrl.href);
       console.log('✅ Service Worker 登録成功:', registration.scope);
     } catch (error) {
       console.error('❌ Service Worker 登録失敗:', error);
     }
+  } else if ('serviceWorker' in navigator) {
+    const reason = isFileProtocol ? 'ローカルファイルモードのため' : '安全なコンテキストではないため';
+    console.info(`ℹ️ ${reason} Service Worker 登録をスキップしました。`);
   }
 
   console.log('✅ Lumin OS 起動完了');
