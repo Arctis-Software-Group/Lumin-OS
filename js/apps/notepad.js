@@ -206,12 +206,14 @@ function createNotepadContent() {
 function renderMarkdown(text) {
   if (!text) return '';
 
-  const escapeHtml = str => str.replace(/[&<>"]+/g, char => ({
+  const escapeChars = {
     '&': '&amp;',
     '<': '&lt;',
     '>': '&gt;',
-    '"': '&quot;'
-  })[char]);
+    '"': '&quot;',
+    "'": '&#39;'
+  };
+  const escapeHtml = str => str.replace(/[&<>"']/g, char => escapeChars[char]);
 
   const lines = text.replace(/\r\n/g, '\n').split('\n');
   const html = [];
