@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumin OS</title>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/lumin-os-icon.svg">
+    <link rel="apple-touch-icon" href="/assets/icons/lumin-os-icon.svg">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="description" content="HTML/CSS/JavaScriptだけで構築された完全クライアントサイド型の仮想OS">
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    <div id="pwa-install-banner" class="hidden glass-panel">
+      <span>アプリをインストールしてオフラインで利用しましょう。</span>
+      <div class="banner-actions">
+        <button id="install-button">インストール</button>
+        <button id="dismiss-install">閉じる</button>
+      </div>
+    </div>
+    <main id="lumin-os">
+      <header class="os-top-bar glass-panel">
+        <div class="logo">
+          <img src="/assets/icons/lumin-os-icon.svg" alt="Lumin OS" aria-hidden="true">
+          <span>Lumin OS</span>
+        </div>
+        <div class="status-area">
+          <span id="status-clock"></span>
+          <span class="status">オフライン対応</span>
+        </div>
+      </header>
+      <section id="desktop" class="desktop"></section>
+      <nav class="dock glass-panel" aria-label="アプリドック"></nav>
+    </main>
+    <template id="app-icon-template">
+      <button class="app-icon glass-panel" type="button">
+        <span class="icon"></span>
+        <span class="label"></span>
+      </button>
+    </template>
+    <template id="window-template">
+      <section class="app-window glass-panel" role="dialog" aria-modal="false">
+        <header class="window-toolbar">
+          <div class="window-actions">
+            <button class="window-close" aria-label="ウィンドウを閉じる"></button>
+            <button class="window-minimize" aria-label="ウィンドウを最小化"></button>
+            <button class="window-maximize" aria-label="ウィンドウを最大化"></button>
+          </div>
+          <div class="window-title"></div>
+        </header>
+        <div class="window-content"></div>
+      </section>
+    </template>
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>
