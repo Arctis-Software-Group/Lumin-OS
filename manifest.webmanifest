@@ -2,15 +2,15 @@
   "name": "Lumin OS",
   "short_name": "LuminOS",
   "description": "HTML/CSS/JavaScriptだけで構築された完全クライアントサイド型の仮想OS",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
   "orientation": "any",
   "icons": [
     {
-      "src": "/assets/icons/lumin-os-icon.svg",
+      "src": "./assets/icons/lumin-os-icon.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
